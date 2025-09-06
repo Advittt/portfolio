@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-/* Colors */
+/* Root colors (keep from previous theme) */
 :root {
   --charcoal: #1e1e1e;
   --dark-grey: #2a2a2a;
@@ -14,33 +14,92 @@
   --orange-dark: #cc5200;
 }
 
-/* Body */
+
+/* Body and page layout */
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background-color: var(--charcoal);
   color: var(--light-grey);
   line-height: 1.6;
+  min-height: 100vh;      /* Ensure body is full height */
+  display: flex;
+  flex-direction: column;  /* Footer at bottom */
+  margin: 0;
 }
 
-/* Header */
+
+/* Header & Navbar */ 
+/* Header container as flex row */
 header {
+  display: flex;
+  justify-content: center; /* center the content-box by default */
+  align-items: center;
   background: var(--dark-grey);
-  color: var(--light-grey);
-  text-align: center;
-  padding: 2rem 1rem;
+  padding: 2rem;
   border-bottom: 3px solid var(--orange);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  position: relative;
 }
-header h1 {
+
+/* Header content box (name + paragraph) */
+.header-content-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto; /* auto margins center it */
+  z-index: 1; /* above navbar if needed */
+}
+
+/* Navbar box */
+.navbar-box {
+  position: absolute; /* keep it on the right */
+  right: 2rem;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar li a {
+  color: var(--light-grey);
+  background: var(--dark-grey);
+  padding: 0.3rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navbar li a:hover,
+.navbar li a.active {
+  background: var(--orange);
+  color: white;
+}
+
+/* Header text styles */
+.header-content-box h1 {
   font-size: 2.5rem;
   color: var(--orange);
 }
-header p {
+
+.header-content-box p {
   opacity: 0.85;
   margin-top: 0.5rem;
+  color: var(--light-grey);
 }
 
-/* Main */
+
+/* Main content */
 main {
+  flex: 1; /* Ensures footer stays at bottom */
+  width: 100%;
   max-width: 1000px;
   margin: 2rem auto;
   padding: 0 1rem;
@@ -103,12 +162,16 @@ main {
   color: var(--light-grey);
 }
 
-/* PDF Link */
-.pdf-link {
-  text-align: center;
+/* download file butttons */
+
+.download-buttons {
+  display: flex;
+  justify-content: center;  /* center both buttons */
+  gap: 1rem;                /* space between buttons */
   margin: 3rem 0;
 }
-.pdf-link a {
+
+.download-buttons .btn {
   background-color: var(--orange);
   color: white;
   padding: 0.75rem 1.5rem;
@@ -117,8 +180,46 @@ main {
   text-decoration: none;
   transition: background 0.2s ease;
 }
-.pdf-link a:hover {
+
+.download-buttons .btn:hover {
   background-color: var(--orange-dark);
+}
+
+/* About & Contact sections */
+.about-section, .contact-section {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: var(--dark-grey);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.about-section h2, .contact-section h2 {
+  color: var(--orange);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.about-section p, .contact-section p, .contact-section ul {
+  color: var(--light-grey);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.contact-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-section li a {
+  color: var(--orange);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-section li a:hover {
+  color: var(--orange-dark);
 }
 
 /* Footer */
@@ -127,5 +228,58 @@ footer {
   padding: 2rem;
   font-size: 0.9rem;
   color: var(--light-grey);
-  border-top: 2px solid var(--dark-grey);
+  background: var(--dark-grey);
+  border-top: 2px solid var(--orange);
+  margin-top: auto; /* Push footer to bottom if page content is short */
 }
+
+
+/* Responsive adjustments */
+/* Responsive layout: <900px */
+@media (max-width: 900px) {
+  header {
+    justify-content: space-between; /* Box 1 left, Box 2 right */
+    padding: 1rem 2rem;
+  }
+
+  .header-content-box {
+    align-items: flex-start;
+    text-align: left;
+    margin: 0; /* remove auto margin */
+  }
+
+  .header-content-box p {
+    display: none; /* hide paragraph */
+  }
+
+  .navbar-box {
+    position: static; /* keep navbar in flow on right */
+  }
+}
+
+/* Adjust font sizes for smaller screens */
+@media (max-width: 600px) {
+  .header-content-box h1 {
+    font-size: 1.8rem; /* smaller title */
+  }
+
+  .navbar li a {
+    padding: 0.25rem 0.7rem; /* smaller buttons */
+    font-size: 0.9rem;
+  }
+
+  header {
+    padding: 1rem 1.5rem; /* reduce header padding */
+  }
+  .download-buttons {
+    flex-direction: column;  /* stack buttons vertically */
+    gap: 0.7rem;
+    align-items: center;
+  }
+
+  .download-buttons .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+  }
+}
+
