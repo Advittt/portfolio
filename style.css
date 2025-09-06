@@ -275,6 +275,12 @@ footer {
     }
 
   /* Navbar buttons */
+  
+    .navbar-box {
+    display: flex;
+    justify-content: flex-end;
+    flex: 0 0 auto; /* don’t shrink */
+  }
     .navbar li a {
     white-space: nowrap; /* prevent text from wrapping inside button */
     padding: 0.25rem 0.6rem; /* slightly smaller on mobile */
