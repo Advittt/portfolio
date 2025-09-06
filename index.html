@@ -1,32 +1,66 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>My Portfolio</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        margin: 40px;
-      }
-      iframe {
-        width: 80%;
-        height: 600px;
-        border: none;
-      }
-      a {
-        display: inline-block;
-        margin-top: 20px;
-        font-size: 18px;
-        text-decoration: none;
-        color: #0070c9; /* Apple-style blue */
-      }
-    </style>
-  </head>
-  <body>
-    <h1>My Portfolio</h1>
-    <iframe src="Portfolio.pdf"></iframe>
-    <br>
-    <a href="Portfolio.pdf" target="_blank">Download Portfolio (PDF)</a>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advit Ahuja - Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="header-box header-content-box">
+    <h1>Advit Ahuja</h1>
+    <p class="header-para">Contribute to optimizing business solutions by applying ML expertise</p>
+  </div>
+
+  <div class="header-box navbar-box">
+    <nav class="navbar">
+      <ul>
+        <li><a class="active" href="index.html">Home</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <main>
+    <section class="intro">
+      <p>Welcome to my portfolio! Below are some selected projects showcasing relevant experience.</p>
+      <p>You can also download my full portfolio as a PDF, see below.</p>
+    </section>
+
+    <section class="projects">
+      <div class="card">
+        <img src="assets/Diss.jpg" alt="Project 1">
+        <h3>Project Title 1</h3>
+        <p>Short description of this project.</p>
+      </div>
+      <div class="card">
+        <img src="assets/cognitiveRobotics.jpg" alt="Project 2">
+        <h3>Project Title 2</h3>
+        <p>Short description of this project.</p>
+      </div>
+      <div class="card">
+        <img src="assets/VC.jpg" alt="Project 3">
+        <h3>Project Title 3</h3>
+        <p>Short description of this project.</p>
+      </div>
+       <div class="card">
+        <img src="assets/NLU.jpg" alt="Project 3">
+        <h3>Project Title 3</h3>
+        <p>Short description of this project.</p>
+      </div>
+    </section>
+
+    <section class="download-buttons">
+      <a href="Portfolio.pdf" target="_blank" class="btn">📄 Download Portfolio</a>
+      <a href="AdvitAhuja.pdf" target="_blank" class="btn">📄 Download Resume</a>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Advit Ahuja
+  </footer>
+</body>
 </html>
