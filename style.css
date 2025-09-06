@@ -264,8 +264,8 @@ footer {
   }
 
   .navbar li a {
-    padding: 0.25rem 0.7rem; /* smaller buttons */
-    font-size: 0.9rem;
+    padding: 0.25rem 0.6rem; /* smaller buttons */
+    font-size: 0.8rem;
   }
 
   header {
