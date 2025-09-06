@@ -262,11 +262,30 @@ footer {
   .header-content-box h1 {
     font-size: 1.8rem; /* smaller title */
   }
+ 
+  /* Navbar container */
+    .navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 0.8rem; /* slightly smaller gap on mobile */
+    padding: 0;
+    margin: 0;
+    flex-wrap: nowrap; /* prevent wrapping */
+    overflow-x: auto;  /* allow horizontal scroll if needed */
+    }
 
-  .navbar li a {
-    padding: 0.25rem 0.7rem; /* smaller buttons */
-    font-size: 0.9rem;
+  /* Navbar buttons */
+  
+    .navbar-box {
+    display: flex;
+    justify-content: flex-end;
+    flex: 0 0 auto; /* don’t shrink */
   }
+    .navbar li a {
+    white-space: nowrap; /* prevent text from wrapping inside button */
+    padding: 0.25rem 0.6rem; /* slightly smaller on mobile */
+    font-size: 0.85rem;      /* smaller text */
+    }
 
   header {
     padding: 1rem 1.5rem; /* reduce header padding */
