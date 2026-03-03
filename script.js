@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Typewriter
   var tagline = document.querySelector('.hero-tagline');
   if (tagline) {
-    typeWriter(tagline, 'Applying ML expertise to build intelligent solutions.');
+    typeWriter(tagline, 'Optimizing business solutions by applying AI and ML expertise.');
   }
 
   // Scroll listeners

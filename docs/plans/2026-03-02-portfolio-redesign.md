@@ -6,7 +6,7 @@ Refactor Advit Ahuja's portfolio from a basic static multi-page site into a bold
 
 ## Design Direction
 
-**Aesthetic:** Bold & Kinetic + Technical & Sharp. Scroll animations, geometric patterns, dramatic typography, animated reveals. An ML engineer's portfolio that feels engineered.
+**Aesthetic:** Bold & Kinetic + Technical & Sharp. Scroll animations, geometric patterns, dramatic typography, animated reveals. An AI and ML software engineer's portfolio that feels engineered.
 
 ## Color System
 
@@ -20,9 +20,9 @@ Refactor Advit Ahuja's portfolio from a basic static multi-page site into a bold
 
 ## Typography
 
-- Display/headings: Syne (bold, geometric, technical feel)
-- Body: A clean sans-serif paired with Syne
-- Monospace accents for tech tags: Space Mono or similar
+- Display/headings: Plus Jakarta Sans (geometric, warm, clean descenders — replaced Syne due to glyph clipping issues)
+- Body: Outfit (clean modern sans-serif)
+- Monospace accents for tech tags: JetBrains Mono
 
 ## Site Structure
 
@@ -48,7 +48,7 @@ Refactor Advit Ahuja's portfolio from a basic static multi-page site into a bold
 ## Section 1: Hero
 
 - Full viewport height
-- Large display font (Syne) for name "Advit Ahuja"
+- Large display font (Plus Jakarta Sans) for name "Advit Ahuja"
 - Animated canvas background: geometric grid with connected nodes/lines, constellation/network pattern in dark grey with orange accent nodes
 - Tagline types itself out with blinking cursor
 - Pulsing scroll-down chevron at bottom
@@ -60,7 +60,7 @@ Refactor Advit Ahuja's portfolio from a basic static multi-page site into a bold
 - Section heading with horizontal orange line accent
 - Bio text (condensed to 2 strong paragraphs)
 - Skills as animated pill tags, staggering in on scroll:
-  - Languages: Python, Java, C++, JavaScript, Dart, etc.
+  - Languages: Python, Java, C#, Svelte, TypeScript, JavaScript, Dart, SQL
   - ML/AI: Machine Learning, NLP, Computer Vision, Data Analysis
   - Tools: Flutter, GraphQL, Jupyter, Android Studio, Figma
 - Education: compact block (University of Manchester, BSc Hons CS, 2:1)
@@ -74,11 +74,13 @@ Refactor Advit Ahuja's portfolio from a basic static multi-page site into a bold
 - Each card shows: company, role, dates, 1-line summary
 - Click to expand: full bullet points, screenshot/image, tech tags as pills
 - Roles (most recent first):
-  1. ServiceMob - ML Engineer Intern (Apr 2025 - Jul 2025)
-     - RAG framework, hallucination mitigation, Multivalent Ontological Blocks
-     - Tags: RAG, Python, NLP, ML
+  1. ServiceMob (Oct 2025 - Present)
+     - Lead AI Software Engineer (Mar 2026 - Present)
+     - AI Software Engineer Intern (Oct 2025 - Feb 2026)
+     - Enterprise RAG pipeline with LangChain, end-to-end MVP launch, lead engineer of 2 devs
+     - Tags: RAG, LangChain, Python, LLMs, NLP, Prisma, SQL
   2. RE:JOIN - Software Engineer, Mobile App Dev (Aug 2023 - Apr 2024)
-     - Flutter dev, dependency injection, GraphQL
+     - Revamped mobile app, real-time chat (20+ users, 40% engagement), reusability +30%
      - Tags: Flutter, Dart, GraphQL, Figma
   3. Dixterz Peri Peri - Website Designer (Aug 2022)
      - Responsive website, UI design, client delivery
@@ -91,10 +93,10 @@ Refactor Advit Ahuja's portfolio from a basic static multi-page site into a bold
 - Cards: image top, dark overlay on hover reveals full brightness, title, description, tech tags
 - Hover: lift + orange glow border
 - Four projects:
-  1. ML for Particle Accelerator (Dissertation)
-  2. Cognitive Robotics - Image Classification
-  3. Visual Computing - Horizon Detection
-  4. NLU - Evidence Detection
+  1. ML for Particle Accelerator (Dissertation) — 90% accuracy, presented to UKRI
+  2. DNN for Vision Recognition — CNN on CIFAR-100, 14% accuracy increase
+  3. Visual Computing - Horizon Detection — OpenCV with C++
+  4. NLU - Evidence Detection — 5,927 pairs, outperformed baselines by 5-8%
 
 ## Section 5: Download CTAs
 
@@ -120,7 +122,7 @@ Refactor Advit Ahuja's portfolio from a basic static multi-page site into a bold
 ## Technical Approach
 
 - Pure HTML, CSS, JavaScript (no frameworks, keeping it simple for GitHub Pages)
-- Google Fonts for Syne + body font
+- Google Fonts for Plus Jakarta Sans + Outfit + JetBrains Mono
 - CSS custom properties for theming
 - CSS animations + JS Intersection Observer for scroll triggers
 - Canvas API for hero geometric background

@@ -12,7 +12,7 @@
   --text-primary: #e0e0e0;
   --text-secondary: #888888;
   --text-muted: #555555;
-  --font-display: 'Syne', sans-serif;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Outfit', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
@@ -321,6 +321,7 @@ body::after {
 
 .section-header {
   margin-bottom: 3rem;
+  overflow: visible;
 }
 
 .section-header h2 {
@@ -329,6 +330,7 @@ body::after {
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.75rem;
+  line-height: 1.5;
 }
 
 .section-line {
@@ -551,6 +553,17 @@ body::after {
   margin-bottom: 0.2rem;
 }
 
+.timeline-role--previous {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.timeline-dates--previous {
+  color: var(--text-muted);
+  font-size: 0.73rem;
+}
+
 .timeline-dates {
   font-family: var(--font-mono);
   font-size: 0.78rem;
@@ -680,7 +693,6 @@ body::after {
 .project-card {
   background: var(--surface);
   border-radius: 12px;
-  overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.35s ease;
 }
@@ -696,12 +708,14 @@ body::after {
   height: 200px;
   overflow: hidden;
   background: var(--surface-light);
+  border-radius: 12px 12px 0 0;
 }
 
 .project-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 25%;
   transition: all 0.4s ease;
   filter: brightness(0.65);
 }
@@ -713,6 +727,7 @@ body::after {
 
 .project-info {
   padding: 1.25rem;
+  overflow: visible;
 }
 
 .project-info h3 {
@@ -721,6 +736,7 @@ body::after {
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
+  line-height: 1.5;
 }
 
 .project-info p {
@@ -870,7 +886,7 @@ footer {
 
 .animate-on-scroll.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 /* Stagger for project cards in the grid */
