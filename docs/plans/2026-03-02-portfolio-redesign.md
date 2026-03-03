@@ -113,7 +113,8 @@ Refactor Advit Ahuja's portfolio from a basic static multi-page site into a bold
 
 - Intersection Observer for all scroll-triggered animations
 - Staggered timing across elements
-- Hero: canvas geometric animation, typewriter effect
+- Hero: canvas geometric animation (fixed, full-page), typewriter effect
+- Background: constellation canvas is position:fixed covering entire page. A `.canvas-fade` overlay darkens progressively as user scrolls (transparent at top → near-opaque by ~2500px scroll depth). Driven by JS scroll listener updating rgba opacity.
 - About: fade-up, skill tag stagger with bounce
 - Experience: timeline draw, card slide-in, expand/collapse
 - Projects: card fade-in, hover effects
@@ -125,7 +126,7 @@ Refactor Advit Ahuja's portfolio from a basic static multi-page site into a bold
 - Google Fonts for Plus Jakarta Sans + Outfit + JetBrains Mono
 - CSS custom properties for theming
 - CSS animations + JS Intersection Observer for scroll triggers
-- Canvas API for hero geometric background
+- Canvas API for full-page constellation background with scroll-driven fade overlay
 - Responsive: mobile-first with breakpoints at 600px and 900px
 
 ## Files to Modify/Create

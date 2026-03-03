@@ -270,11 +270,21 @@ document.addEventListener('DOMContentLoaded', function() {
     typeWriter(tagline, 'Optimizing business solutions by applying AI and ML expertise.');
   }
 
+  // Canvas fade overlay
+  var canvasFade = document.querySelector('.canvas-fade');
+
   // Scroll listeners
   window.addEventListener('scroll', function() {
     updateScrollProgress();
     updateNavState();
     updateScrollSpy();
+
+    // Fade canvas as user scrolls — fully transparent at top, nearly opaque by ~1500px
+    if (canvasFade) {
+      var scrollY = window.scrollY;
+      var opacity = Math.min(scrollY / 2500, 0.92);
+      canvasFade.style.background = 'rgba(13, 13, 13, ' + opacity + ')';
+    }
   }, { passive: true });
 
   // Init modules
