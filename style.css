@@ -289,9 +289,10 @@ body::after {
 
 .hero-scroll {
   position: absolute;
-  bottom: -6rem;
+  bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
