@@ -3,41 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Me - Advit Ahuja</title>
+  <title>Contact — Advit Ahuja</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-  <div class="header-box header-content-box">
-    <h1>Advit Ahuja</h1>
-    <p class="header-para">Contribute to optimizing business solutions by applying ML expertise</p>
-  </div>
 
-  <div class="header-box navbar-box">
-    <nav class="navbar">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Me</a></li>
-        <li><a class="active" href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+  <div class="scroll-progress"></div>
 
-  <main>
-    <section class="contact-section">
-      <h2>Contact Me</h2>
-      <p>If you’d like to get in touch, feel free to reach out via email or connect on LinkedIn.</p>
-      <ul>
-        <li>Email: <a href="mailto:advitahuja1@gmail.com">advitahuja1@gmail.com</a></li>
-        <li>LinkedIn: <a href="https://www.linkedin.com/in/advit-ahuja/" target="_blank">linkedin.com/in/advit-ahuja</a></li>
-        <li>GitHub: <a href="https://github.com/Advittt" target="_blank">github.com/Advittt</a></li>
-      </ul>
+  <nav class="main-nav">
+    <a href="index.html" class="nav-logo">AA</a>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="index.html#about" class="nav-link">About</a>
+      <a href="index.html#experience" class="nav-link">Experience</a>
+      <a href="index.html#projects" class="nav-link">Projects</a>
+      <a href="contact.html" class="nav-link active">Contact</a>
+      <a href="#" class="nav-link nav-link--muted">Blog</a>
+    </div>
+    <div class="nav-buttons">
+      <a href="Portfolio.pdf" target="_blank" class="nav-btn">Portfolio</a>
+      <a href="AdvitAhuja.pdf" target="_blank" class="nav-btn">Resume</a>
+    </div>
+  </nav>
+
+  <main class="page-main">
+    <section class="contact-page">
+      <div class="section-header animate-on-scroll">
+        <h2>Get In Touch</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="contact-grid animate-on-scroll">
+        <div class="contact-card">
+          <span class="contact-label">Email</span>
+          <a href="mailto:advitahuja1@gmail.com">advitahuja1@gmail.com</a>
+        </div>
+        <div class="contact-card">
+          <span class="contact-label">LinkedIn</span>
+          <a href="https://www.linkedin.com/in/advit-ahuja/" target="_blank">linkedin.com/in/advit-ahuja</a>
+        </div>
+        <div class="contact-card">
+          <span class="contact-label">GitHub</span>
+          <a href="https://github.com/Advittt" target="_blank">github.com/Advittt</a>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    © 2025 Advit Ahuja
+    <div class="footer-content">
+      <span>&copy; 2026 Advit Ahuja</span>
+      <div class="footer-links">
+        <a href="mailto:advitahuja1@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/advit-ahuja/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/Advittt" target="_blank">GitHub</a>
+      </div>
+    </div>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
