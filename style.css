@@ -763,6 +763,71 @@ body::after {
 }
 
 /* ========================================
+  BLOG PAGE
+======================================== */
+
+.blog-meta {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.blog-project-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.blog-project-card:hover {
+  transform: translateY(-6px);
+  cursor: pointer;
+}
+
+.blog-image {
+  margin: 2rem 0;
+}
+
+.blog-image img {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.blog-content {
+  max-width: 750px;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.blog-content h3 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.blog-content p {
+  margin-bottom: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.blog-content ul {
+  margin: 1rem 0 1.5rem 1.5rem;
+}
+
+.blog-content li {
+  margin-bottom: 0.5rem;
+}
+
+.blog-quote {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border-left: 3px solid var(--accent);
+  background: rgba(255, 255, 255, 0.02);
+  font-style: italic;
+  color: var(--text-primary);
+}
+
+/* ========================================
    Download CTA
    ======================================== */
 .download-cta {
@@ -893,6 +958,40 @@ footer {
 
 .contact-card a:hover {
   color: var(--orange-light);
+}
+
+/* ========================================
+   Code style
+   ======================================== */
+
+   .code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
 }
 
 /* ========================================

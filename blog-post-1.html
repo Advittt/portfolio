@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getting Banned by Claude — Advit Ahuja</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="scroll-progress"></div>
+
+  <!-- NAV -->
+  <nav class="main-nav">
+    <a href="index.html" class="nav-logo">AA</a>
+
+    <button class="nav-toggle">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-links">
+      <a href="index.html#about" class="nav-link">About</a>
+      <a href="index.html#experience" class="nav-link">Experience</a>
+      <a href="index.html#projects" class="nav-link">Projects</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="blog.html" class="nav-link active">Blog</a>
+    </div>
+
+    <div class="nav-buttons">
+      <a href="Portfolio.pdf" target="_blank" class="nav-btn">Portfolio</a>
+      <a href="AdvitAhuja.pdf" target="_blank" class="nav-btn">Resume</a>
+    </div>
+  </nav>
+
+  <!-- Background -->
+  <canvas id="hero-canvas"></canvas>
+  <div class="canvas-fade"></div>
+
+  <!-- BLOG CONTENT -->
+  <main class="page-main">
+    <div class="section contact-page">
+
+      <!-- HEADER -->
+      <div class="section-header animate-on-scroll">
+        <h2>Passive to Active, how autonomizing my claude code session led to my account being suspended</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="blog-meta animate-on-scroll">
+        <span>April 1st, 2026</span>
+        <span>•</span>
+        <span>AI, Engineering</span>
+      </div>
+
+      <!-- HERO IMAGE -->
+      <!-- <div class="blog-image animate-on-scroll"> -->
+        <!-- <img src="assets/claude-ban.png" alt="Claude Ban Screenshot"> -->
+      <!-- </div> -->
+
+      <!-- CONTENT -->
+      <div class="blog-content">
+
+
+        <p class="animate-on-scroll" style="color: var(--text-primary);">
+          I set out to build a personal AI assistant inspired by J.A.R.V.I.S.. Not just a chatbot, but something closer to an operating system layer:
+        </p>
+        <ul  class="section-header animate-on-scroll">
+            <li>voice-driven</li>
+            <li>modular</li>
+            <li>capable of delegating tasks</li>
+            <li>composed of smaller, specialized agents</li>
+        </ul>
+        <p class="animate-on-scroll" style="color: var(--text-primary);">
+        There are a few different users of claude code, the business users who understand the product and service whom build tools the intended way, then there are the engineers who think more abstract, blinded by optimization, efficiency and curiosity, which can lead us to exploring uncharted edge cases.
+        </p>
+
+        <h1 class="animate-on-scroll" style="color: var(--orange);">My Idea - Passive</h1>
+            <p class="animate-on-scroll" style="color: var(--text-primary);">
+            Jarvis is a local voice assistant that runs on the user's Mac. Modern day Siri, Alexa, Google Home, constantly listen in to our conversations without us prompting to wake it. Jarvis has key principles:
+            </p>
+            <ul class="section-header animate-on-scroll">
+                <li> Locality - the voice and speech all runs locally on my computer and does not make any requests unless I explicitly call “Jarvis”. </li>
+                <li>Transparent - Use open source code and libraries to increase visibility of how Jarvis works and allow Jarvis to understand its own architecture. This way it can improve itself too upon request.</li>
+                <li>Customizable - Having an ability to connect to and add as many subagents as I desired for different purposes meant it was scalable and free to interact with whatever I wanted to - home devices like lights, garage, social media, Slack, Calendar, etc.</li>
+                <li>Portable - using Claude Dispatch, I want the ability to connect to Jarivs while I am away form my computer. Complete tasks while I am in the gym, cinema, networking events, etc.</li>
+                <li style="font-weight: bold;">Active.</li>
+            </ul>
+
+        <h1 class="animate-on-scroll" style="color: var(--orange);">Old Architecture</h1>
+            <h2 class="animate-on-scroll" style="color: var(--orange-light);">Where Things Got Interesting</h2>
+                <p class="animate-on-scroll" style="color: var(--text-primary);"> Initially, every interaction followed a clean lifecycle:</p>
+                <blockquote class="animate-on-scroll" style="color: var(--text-primary); border-left: 4px solid var(--orange-light); padding-left: 1rem;">
+                spawn → respond → exit
+                </blockquote>
+                <p></p>
+                <p class="animate-on-scroll" style="color: var(--text-primary);">Since I had to use python to inject the speech to text into the CLI, a new <code>claude -p "&lt;message&gt;"</code> subprocess is spawned and exits after producing a response. This is not a persistent process - it's a "spawn, respond, die" cycle. Okay, so let’s just so lets maintain conversation continuity by passing <code>--continue</code> on subsequent calls, restoring the full conversation history (messages, tool results, everything).</p>
+                <p class="animate-on-scroll" style="color: var(--text-primary);">I thought this idea of using claude code works great because it handles context compaction automatically when the session gets long. Furthermore, the system prompt (from <code>CLAUDE.md</code> ) is re-assembled by Claude Code on every call, but prompt caching means repeated content is served from cache at minimal cost. This is why the Jarvis personality lives in <code>CLAUDE.md</code> rather than being passed as a <code>--system-prompt</code> flag - it gets cached more aggressively and can lose its personality!</p>
+                <p class="animate-on-scroll" style="color: var(--text-primary);">Nonetheless, this bottleneck of using <code>--continue</code> means I CAN NOT keep subagents alive since they can not be recalled by the main agents memory.</p>
+                <p class="animate-on-scroll" style="color: var(--orange-dark); font-weight: bold;">In that case, I will just make subagents their own claude code session and pass in the UUID, <code>--resume &lt;session-id&gt;</code>, so they recall the conversation history and remain isolated to one another, living in separate working directories.</p>
+                <p class="animate-on-scroll" style="color: var(--text-primary);">This led to a key realization:</p>
+                 <blockquote class="animate-on-scroll" style="color: var(--text-primary); border-left: 4px solid var(--orange-light); padding-left: 1rem;">
+                You don’t need short-lived processes. <a style="font-weight: bold; color: var(--orange-dark);" >You can build persistent agent sessions.</a>
+                </blockquote>
+                <hr style="border: 0; height: 1px; background-color: var(--text-secondary); margin: 20px 0;">
+                <p class="animate-on-scroll" style="color: var(--orange-dark); font-weight: bold;">Jarvis:</p>
+                <ul class="animate-on-scroll">
+                    <li>Simply, a Claude Code session with a simple documentation - has knowledge about how it works, how to add additional subagents, and an configure itself upon users request.</li>
+                    <li>main brain and orchestrator</li>
+                    <li>can control life cycle of sub agents as well as assign them tasks and commands</li>
+                </ul>
+                <p class="animate-on-scroll" style="color: var(--orange-dark); font-weight: bold;">‘Sub’agents:</p>
+                <ul class="animate-on-scroll">
+                    <li>All subagents at this point were not exactly sub agents of Jarvis, they were just other claude code sessions but acted like subagents</li>
+                    <li>Each subagent has its own Claude Code session with its own <code>CLAUDE.md</code> docs directory, and tool set. This means a subagent only sees the documentation relevant to its domain — the Spotify bot doesn't know about Gmail, and vice versa.</li>
+                    <li>Spotify was my first subagent I made as a POC - if I give a claude CLI simple instructions on how to connect to my Spotify API, and pointed it to some python files to show how to perform tasks (tools), can it act as my medium to control an external software? YES!</li>
+                    <li>GMail - Now that we have Spotify, can we do the same for GMail and google accounts - yes and even easier now that we have an example to go off of (Spotify)</li>
+                </ul>
+        
+        <h1 class="animate-on-scroll" style="color: var(--orange);">The Edge Case That Introduced Fuzziness</h1>
+            <p class="animate-on-scroll" style="color: var(--text-primary);"> Each request was isolated. Context was reconstructed each time. This was safe, predictable and aligned with how most AI tooling is intended to work. But it felt… inefficient. </p>
+            <h2 class="animate-on-scroll" style="color: var(--orange-light);">The Shift From Stateless Calls to Active Agents</h2>
+                <p class="animate-on-scroll" style="color: var(--text-primary);"> At this point, the architecture quietly transformed into something else:</p>
+                <blockquote class="animate-on-scroll" style="color: var(--text-primary); border-left: 4px solid var(--orange-light); padding-left: 1rem;">
+                    a continuously running, multi-agent system capable of acting without direct user prompts - <a style="font-weight: bold; color: var(--orange-dark);"> a system of stateful, cooperating agents.</a>
+                </blockquote>
+                <p class="animate-on scroll" style="color: var(--text-primary);">The old architecture meant I have persistent agents who can maintain its own memory, retain context across interactions and behave more like a long-lived process. Now I need to take Jarivs to its final form, <a style="font-weight: bold; color: var(--orange-dark);">Active.</a></p>
+        
+        <h1 class="animate-on-scroll" style="color: var(--orange);">STOP THE BUS</h1>
+            <p class="animate-on-scroll" style="color: var(--text-primary);">Here is where my planning gets me suspended.</p>
+            <p class="animate-on-scroll" style="color: var(--text-primary);">Given my research and exploration, Jarvis will use a python bus to communicate between the agents. I enter an autonomous OS.</p>
+            <p class="animate-on-scroll" style="color: var(--text-primary);">Instead of:</p>
+            <ul class="animate-on-scroll">
+                <li>Advit: “Jarivs, can you check my emails for anyone trying to scheudle a meeting with me”</li>
+                <li>Jarvis: “You have an email from Dario Amodei requesting lunch at 1 pm this Saturday”</li>
+                <li>Advit: “Jarivs, can you add that to my calendar”</li>
+                <li>Jarivs: “Done”</li>
+            </ul>
+            <p class="animate-on-scroll" style="color: var(--text-primary);">It becomes:</p>
+            <ul class="animate-on-scroll">
+                <li>Jarvis: “Hey Advit, you got an email from Dario Amodei requesting lunch at 2 pm on Saturday, I added it to your calendar and confirmed with him. I had to reschedule your lunch date with your girlfriend given the conflicts and priority list. I will let you know how she responds.”</li>
+            </ul>
+            <p class="animate-on-scroll" style="color: var(--text-primary);">I introduce <a style="font-weight: bold; color: var(--orange-dark);">polling</a> for my agents to actively manage my day. Keeping me productive and not wasting time on the standard tedious tasks. This mimics office managers in real life, you don’t micromanage them, they tell you what to do. <a style="font-weight: bold; color: var(--orange-dark);">An autonomous multi-agent system.</a></p>
+            <p class="animate-on-scroll" style="color: var(--text-primary);"> I did it, lets go! planning mode and execute! clear context, and auto-accept! Im getting myself a coffee while it does its magic!!!</p>
+             <div class="blog-image animate-on-scroll">
+                <img src="assets/claude-ban-CLI.png" alt="Claude Code CLI Screenshot Of Ban">
+            </div>
+            <p class="animate-on-scroll" style="color: var(--text-primary);">oh...</p>
+        
+        <h1 class="animate-on-scroll" style="color: var(--orange);">What I Missed</h1>
+            <p class="animate-on-scroll" style="color: var(--text-primary);">The system was technically working, but I hadn’t fully internalized the policy implications of what I was enabling.</p>
+            <p class="animate-on-scroll" style="color: var(--text-primary);">In particular:</p>
+            <ul class="animate-on-scroll">
+                <li>long-lived sessions blur boundaries of control</li>
+                <li>background-style polling introduces autonomy</li>
+                <li>agent-to-agent coordination increases system independence</li>
+            </ul>
+            <p class="animate-on-scroll" style="color: var(--text-primary);">These aren’t just technical features, they change the operational model. I wasn’t using the official API - I was orchestrating this through repeated CLI/session calls, effectively treating Claude like a backend.</p>
+        
+        <h1 class="animate-on-scroll" style="color: var(--orange);">The Result</h1>
+            <div class="blog-image animate-on-scroll">
+                <img src="assets/claude-ban.png" alt="Claude Email Of Suspension">
+            </div>
+            <p class="animate-on-scroll" style="color: var(--text-primary);">My access was revoked, my account suspended and under investigation.</p>
+            <p class="animate-on-scroll" style="color: var(--text-primary);">At first, that was frustrating.</p>
+            <p class="animate-on-scroll" style="color: var(--text-primary);">But stepping back, I understand why.</p>
+            <p class="animate-on-scroll" style="color: var(--text-primary);">The system I was converging toward wasn’t just a “tool wrapper” anymore, it was moving into a category that requires much tighter constraints and safeguards.</p>
+            <h2 class="animate-on-scroll" style="color: var(--orange-light);">What I Learned</h2>
+                <h3 class="animate-on-scroll" style="color: var(--orange-light);">1. Architecture Shapes Behavior</h3>
+                    <p class="animate-on-scroll" style="color: var(--text-primary);">Small decisions (like session persistence) can fundamentally change what a system is.</p>
+                <h3 class="animate-on-scroll" style="color: var(--orange-light);">2. Autonomy Is a Spectrum</h3>
+                    <p class="animate-on-scroll" style="color: var(--text-primary);">There’s a big difference between responding to a request and continuously acting on behalf of a user.</p>
+                <h3 class="animate-on-scroll" style="color: var(--orange-light);">3. Orchestration Is the Hard Problem</h3>
+                    <p class="animate-on-scroll" style="color: var(--text-primary);">The challenge isn’t calling models, it's coordinating agents, handling failure, managing state safely.</p>
+                <h3 class="animate-on-scroll" style="color: var(--orange-light);">The Key Insight</h3>
+                    <p class="animate-on-scroll" style="color: var(--text-primary);">The biggest realization for me was:</p>
+                    <blockquote class="animate-on-scroll" style="color: var(--text-primary); border-left: 4px solid var(--orange-light); padding-left: 1rem;">
+                        a continuously running, multi-agent system capable of acting without direct user prompts - <a style="font-weight: bold; color: var(--orange-dark);"> a system of stateful, cooperating agents.</a>
+                    </blockquote>
+                    <p class="animate-on-scroll" style="color: var(--text-primary);">None of these individually seemed problematic.</p>
+                <p class="animate-on-scroll" style="color: var(--text-primary);">Together, they changed the nature of the system entirely.</p>
+            
+            <h2 class="animate-on-scroll" style="color: var(--orange-light);">The Redesign (What I’d Do Now)</h2>
+            <p class="animate-on-scroll" style="color: var(--text-primary);">If I were to rebuild this system today, I’d keep the same vision, but enforce stricter boundaries.</p>
+                <h3 class="animate-on-scroll" style="color: var(--orange-light);">Principles</h3>
+                    <ul class="animate-on-scroll">
+                        <li>User-initiated only - No background loops or polling. Use API where necessary and recognize system intentions</li>
+                        <li>Ephemeral execution - No long-lived hidden state</li>
+                        <li>Explicit orchestration - Every multi-agent step is traceable and intentional</li>
+                        <li>Token Management - understand and manage my token usage more  carefully.</li>
+                    </ul>
+            
+        
+        <h1 class="animate-on-scroll" style="color: var(--orange);">Why I’m Sharing This</h1>
+                    <p class="animate-on-scroll" style="color: var(--text-primary);"> Not because something “went wrong”, but because something important became visible. If you’re building in this space, you will probably run into the same edge.</p>
+        <h1 class="animate-on-scroll" style="color: var(--orange);">Final Thoughts</h1>
+            <p class="animate-on-scroll" style="color: var(--text-primary);">Curiosity led me here.</p>
+            <ul class="animate-on-scroll">
+                <li>This was purely a personal experiment</li>
+                <li>No reselling, no abuse, no scraping</li>
+                <li>Just exploring multi-agent architectures</li>
+                <li>It was never my intention to break anything or go against the TOS</li>
+            </ul>
+            <p class="animate-on-scroll" style="color: var(--text-primary);"> Just an attempt to understand what becomes possible when you combine orchestration, memory, and modular agents.</p>
+            <hr style="border: 0; height: 1px; background-color: var(--text-secondary); margin: 20px 0;">
+            <p class="animate-on-scroll" style="color: var(--orange-dark); font-weight: bold;">If anyone from Anthropic happens to read this:</p>
+            <p class="animate-on-scroll" style="color: var(--text-primary);">This project was driven by curiosity and a genuine interest in building thoughtful systems, not bypassing safeguards or misusing the platform.</p>
+            <p class="animate-on-scroll" style="color: var(--text-primary);">I now better understand the architectural patterns that can unintentionally cross important boundaries, and how to design within them responsibly.</p>
+            <p class="animate-on-scroll" style="color: var(--text-primary);">I would greatly appreciate the opportunity to continue using your tools, and to apply these lessons in a more aligned and compliant way moving forward.</p>
+
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <span>&copy; 2026 Advit Ahuja</span>
+      <div class="footer-links">
+        <a href="mailto:advitahuja1@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/advit-ahuja/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/Advittt" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
