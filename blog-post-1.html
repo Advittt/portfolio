@@ -84,13 +84,13 @@
 
         <h1 class="animate-on-scroll" style="color: var(--orange);">My Idea - Passive</h1>
             <p class="animate-on-scroll" style="color: var(--text-primary);">
-            Jarvis is a local voice assistant that runs on the user's Mac. Modern day Siri, Alexa, Google Home, constantly listen in to our conversations without us prompting to wake it. Jarvis has key principles:
+            Jarvis is a local voice assistant that runs on the user's Mac. Modern day Siri, Alexa, Google Home, constantly listen in to our conversations without us prompting to wake them. Jarvis has key principles:
             </p>
             <ul class="section-header animate-on-scroll">
                 <li> Locality - the voice and speech all runs locally on my computer and does not make any requests unless I explicitly call “Jarvis”. </li>
                 <li>Transparent - Use open source code and libraries to increase visibility of how Jarvis works and allow Jarvis to understand its own architecture. This way it can improve itself too upon request.</li>
                 <li>Customizable - Having an ability to connect to and add as many subagents as I desired for different purposes meant it was scalable and free to interact with whatever I wanted to - home devices like lights, garage, social media, Slack, Calendar, etc.</li>
-                <li>Portable - using Claude Dispatch, I want the ability to connect to Jarivs while I am away form my computer. Complete tasks while I am in the gym, cinema, networking events, etc.</li>
+                <li>Portable - using Claude Dispatch, I want the ability to connect to Jarvis while I am away form my computer. Complete tasks while I am in the gym, cinema, networking events, etc.</li>
                 <li style="font-weight: bold;">Active.</li>
             </ul>
 
@@ -102,7 +102,7 @@
                 </blockquote>
                 <p></p>
                 <p class="animate-on-scroll" style="color: var(--text-primary);">Since I had to use python to inject the speech to text into the CLI, a new <code>claude -p "&lt;message&gt;"</code> subprocess is spawned and exits after producing a response. This is not a persistent process - it's a "spawn, respond, die" cycle. Okay, so let’s just so lets maintain conversation continuity by passing <code>--continue</code> on subsequent calls, restoring the full conversation history (messages, tool results, everything).</p>
-                <p class="animate-on-scroll" style="color: var(--text-primary);">I thought this idea of using claude code works great because it handles context compaction automatically when the session gets long. Furthermore, the system prompt (from <code>CLAUDE.md</code> ) is re-assembled by Claude Code on every call, but prompt caching means repeated content is served from cache at minimal cost. This is why the Jarvis personality lives in <code>CLAUDE.md</code> rather than being passed as a <code>--system-prompt</code> flag - it gets cached more aggressively and can lose its personality!</p>
+                <p class="animate-on-scroll" style="color: var(--text-primary);">I thought this idea of using claude code works great because it handles context compaction automatically when the session gets long. Furthermore, the system prompt (from <code>CLAUDE.md</code> ) is re-assembled by Claude Code on every call, but prompt caching means repeated content is served from cache at minimal cost. This is why the Jarvis personality lives in <code>CLAUDE.md</code> rather than being passed as a <code>--system-prompt</code> flag - it gets cached more aggressively and can't lose it's personality!</p>
                 <p class="animate-on-scroll" style="color: var(--text-primary);">Nonetheless, this bottleneck of using <code>--continue</code> means I CAN NOT keep subagents alive since they can not be recalled by the main agents memory.</p>
                 <p class="animate-on-scroll" style="color: var(--orange-dark); font-weight: bold;">In that case, I will just make subagents their own claude code session and pass in the UUID, <code>--resume &lt;session-id&gt;</code>, so they recall the conversation history and remain isolated to one another, living in separate working directories.</p>
                 <p class="animate-on-scroll" style="color: var(--text-primary);">This led to a key realization:</p>
@@ -131,17 +131,17 @@
                 <blockquote class="animate-on-scroll" style="color: var(--text-primary); border-left: 4px solid var(--orange-light); padding-left: 1rem;">
                     a continuously running, multi-agent system capable of acting without direct user prompts - <a style="font-weight: bold; color: var(--orange-dark);"> a system of stateful, cooperating agents.</a>
                 </blockquote>
-                <p class="animate-on scroll" style="color: var(--text-primary);">The old architecture meant I have persistent agents who can maintain its own memory, retain context across interactions and behave more like a long-lived process. Now I need to take Jarivs to its final form, <a style="font-weight: bold; color: var(--orange-dark);">Active.</a></p>
+                <p class="animate-on scroll" style="color: var(--text-primary);">The old architecture meant I have persistent agents who can maintain its own memory, retain context across interactions and behave more like a long-lived process. Now I need to take Jarvis to its final form, <a style="font-weight: bold; color: var(--orange-dark);">Active.</a></p>
         
         <h1 class="animate-on-scroll" style="color: var(--orange);">STOP THE BUS</h1>
             <p class="animate-on-scroll" style="color: var(--text-primary);">Here is where my planning gets me suspended.</p>
             <p class="animate-on-scroll" style="color: var(--text-primary);">Given my research and exploration, Jarvis will use a python bus to communicate between the agents. I enter an autonomous OS.</p>
             <p class="animate-on-scroll" style="color: var(--text-primary);">Instead of:</p>
             <ul class="animate-on-scroll">
-                <li>Advit: “Jarivs, can you check my emails for anyone trying to scheudle a meeting with me”</li>
+                <li>Advit: “Jarvis, can you check my emails for anyone trying to scheudle a meeting with me”</li>
                 <li>Jarvis: “You have an email from Dario Amodei requesting lunch at 1 pm this Saturday”</li>
-                <li>Advit: “Jarivs, can you add that to my calendar”</li>
-                <li>Jarivs: “Done”</li>
+                <li>Advit: “Jarvis, can you add that to my calendar”</li>
+                <li>Jarvis: “Done”</li>
             </ul>
             <p class="animate-on-scroll" style="color: var(--text-primary);">It becomes:</p>
             <ul class="animate-on-scroll">
