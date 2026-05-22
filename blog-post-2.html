@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build YC's Next Unicorn — Agent Hack Day — Advit Ahuja</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress"></div>
+
+  <!-- NAV (same as index, but Blog active) -->
+  <nav class="main-nav">
+    <a href="index.html" class="nav-logo">AA</a>
+
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-links">
+      <a href="index.html#about" class="nav-link">About</a>
+      <a href="index.html#experience" class="nav-link">Experience</a>
+      <a href="index.html#projects" class="nav-link">Projects</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="blog.html" class="nav-link active">Blog</a>
+    </div>
+
+    <div class="nav-buttons">
+      <a href="Portfolio.pdf" target="_blank" class="nav-btn">Portfolio</a>
+      <a href="AdvitAhuja.pdf" target="_blank" class="nav-btn">Resume</a>
+    </div>
+  </nav>
+
+  <!-- Background -->
+  <canvas id="hero-canvas"></canvas>
+  <div class="canvas-fade"></div>
+
+  <!-- POST -->
+  <main class="page-main">
+    <article class="section blog-content">
+
+      <div class="section-header animate-on-scroll">
+        <h2 style="color: var(--orange);">Build YC's Next Unicorn — Agent Hack Day</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="blog-meta animate-on-scroll">
+        <span class="tech-tag">April 29, 2026</span>
+        <span class="tech-tag">Hackathon</span>
+        <span class="tech-tag">AI Agents</span>
+        <span class="tech-tag">2nd Place 🏆</span>
+      </div>
+
+      <p class="animate-on-scroll" style="color: var(--text-primary);">
+        Build YC's Next Unicorn Hack Day —
+        <strong style="color: var(--orange-dark);">1,168 participants</strong>,
+        <strong style="color: var(--orange-dark);">44 projects submitted</strong>,
+        <strong style="color: var(--orange-dark);">2nd place awarded</strong> 🏆. Hosted
+        at the AWS Builder Loft on Market Street in San Francisco, it was a full day of
+        going from idea to live demo in front of a panel of YC judges.
+      </p>
+
+      <p class="animate-on-scroll" style="color: var(--text-primary);">
+        We built TrueConsent, an AI platform that files medical appeals. The opportunity
+        is an <strong style="color: var(--orange-dark);">arbitrage on inattention</strong>:
+        insurers deny claims at scale, most of those denials collapse the moment someone
+        pushes back — and almost nobody pushes back. The numbers are stark.
+      </p>
+
+      <div class="blog-stats animate-on-scroll">
+        <div class="blog-stat">
+          <div class="stat-number">1 in 5</div>
+          <div class="stat-label">claims denied by insurers</div>
+        </div>
+        <div class="blog-stat">
+          <div class="stat-number">70%</div>
+          <div class="stat-label">&ldquo;not medically necessary&rdquo; denials overturned on appeal</div>
+        </div>
+        <div class="blog-stat">
+          <div class="stat-number">$265B</div>
+          <div class="stat-label">fought by hospitals &amp; patients every year</div>
+        </div>
+        <div class="blog-stat">
+          <div class="stat-number">&lt;1%</div>
+          <div class="stat-label">of people ever appeal — most win when they do</div>
+        </div>
+      </div>
+
+      <p class="animate-on-scroll" style="color: var(--text-primary);">
+        The hard part was never the fix — it's that almost no one shows up to claim
+        what's owed. TrueConsent shows up.
+      </p>
+
+      <figure class="blog-image animate-on-scroll">
+        <img src="assets/build-ycs-next-unicorn-agent-hack-day-me-speaking.JPG" alt="Advit presenting TrueConsent live at the podium">
+        <figcaption style="margin-top: 0.6rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); text-align: center;">
+          Presenting TrueConsent live to the room and the YC panel.
+        </figcaption>
+      </figure>
+
+      <h3 class="animate-on-scroll" style="color: var(--orange-light);">The Pivot</h3>
+
+      <p class="animate-on-scroll" style="color: var(--text-primary);">
+        Why is the team name
+        <strong style="color: var(--orange-dark);">TrueConsent</strong> and not
+        <strong style="color: var(--orange-dark);">TrueAppeals</strong>? Initially we
+        submitted our team name because we were making an AI medical consent form
+        scanner — something that would highlight red flags before you sign. But when we
+        had almost finished, we spoke to some YC panelists and they helped us realize
+        our flaw: if you're in dire need of surgery, are you really going to change
+        hospitals when you're in urgent care? No.
+      </p>
+
+      <p class="animate-on-scroll" style="color: var(--text-primary);">
+        This is where we had to make a crucial decision and
+        <strong style="color: var(--orange-dark);">pivot</strong>. Pivoting is how we
+        came up with the winning idea — it came from taking advice and genuinely
+        understanding real-world situations.
+      </p>
+
+      <figure class="blog-image animate-on-scroll">
+        <img src="assets/build-ycs-next-unicorn-agent-hack-day-top-3-teams-photos.JPG" alt="The TrueConsent team at the awards">
+        <figcaption style="margin-top: 0.6rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); text-align: center;">
+          Jwalin Shah (TrueConsent); Me (TrueConsent); Victoria Wang (TrueConsent); Holly Tang (1st place - ScanReason AI); Alison Cossette (3rd place - Ruby's Agent)
+        </figcaption>
+      </figure>
+
+      <h3 class="animate-on-scroll" style="color: var(--orange-light);">Speed</h3>
+
+      <p class="animate-on-scroll" style="color: var(--text-primary);">
+        We leveraged our tools — including
+        <strong style="color: var(--orange-dark);">Lightsprint</strong>, one of the
+        hackathon sponsors — which let us go from idea to MVP within the tight time
+        constraints and adapt fast — leaning on it that hard also earned us the
+        <strong style="color: var(--orange-dark);">Best Use of Lightsprint</strong>
+        prize. So much so that Victoria built a completely different submission for us
+        in an entirely different sector. Why? Because for small projects, idea to
+        prototype is catching up to the rate at which we can think.
+      </p>
+
+      <p class="animate-on-scroll" style="color: var(--text-primary);">
+        Before we started, Kuanze Ma — who had won
+        <strong style="color: var(--orange-dark);">two hackathons in two days</strong> —
+        gave a short presentation on how to win one. Four things judges look for:
+      </p>
+
+      <ul class="animate-on-scroll" style="color: var(--text-primary);">
+        <li><strong style="color: var(--orange-dark);">Usefulness</strong></li>
+        <li><strong style="color: var(--orange-dark);">Execution</strong></li>
+        <li><strong style="color: var(--orange-dark);">Leverage</strong></li>
+        <li><strong style="color: var(--orange-dark);">Clarity</strong></li>
+      </ul>
+
+      <blockquote class="animate-on-scroll" style="color: var(--text-primary); border-left: 4px solid var(--orange-light); padding-left: 1rem;">
+        Aim to solve one problem, and make it realistic to complete within the time frame.
+      </blockquote>
+
+      <figure class="blog-image animate-on-scroll">
+        <img src="assets/build-ycs-next-unicorn-agent-hack-day-awards-list.png" alt="Prize results showing TrueConsent winning two awards">
+        <figcaption style="margin-top: 0.6rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); text-align: center;">
+          The results — TrueConsent took 2nd Place Demo and Best Use of Lightsprint.
+        </figcaption>
+      </figure>
+
+      <p class="animate-on-scroll" style="color: var(--text-primary);">
+        <strong style="color: var(--orange-dark);">2nd place</strong> was a great
+        achievement, and it proved to us that my team and I — all coming from CS
+        backgrounds — are at an advantage when it comes to picking up new technologies
+        and competing in a welcoming yet competitive environment. We all had so much
+        fun, and from the event Adam Chan set up, everyone walked away with new
+        knowledge and skills no matter what level they walked in at.
+      </p>
+
+      <p class="animate-on-scroll" style="color: var(--text-primary);">
+        Demoing live in front of everyone — including the panel of YC judges — was a
+        phenomenal opportunity. They believed in our idea, and so do we.
+      </p>
+
+      <blockquote class="animate-on-scroll" style="color: var(--text-primary); border-left: 4px solid var(--orange-light); padding-left: 1rem;">
+        Medical appeals are skewed for you to lose.
+      </blockquote>
+
+      <h3 class="animate-on-scroll" style="color: var(--orange-light);">Special Thanks</h3>
+
+      <p class="animate-on-scroll" style="color: var(--text-primary);">
+        A huge thank you to the
+        <strong style="color: var(--orange-dark);">HackerSquad team</strong> and
+        <strong style="color: var(--orange-dark);">Adam Chan</strong> for organizing and
+        running the event — bringing 1,168 builders into one room and making it the
+        welcoming, high-energy day it was.
+      </p>
+
+      <h3 class="animate-on-scroll" style="color: var(--orange-light);">Links</h3>
+
+      <ul class="animate-on-scroll" style="color: var(--text-primary);">
+        <li><a href="https://hackersquad.io/events/build-ycs-next-unicorn-agent-hack-day" target="_blank">Event page — Hackersquad</a></li>
+        <li><a href="https://hel1.your-objectstorage.com/hackersquadcontent/recordings/event_cmnkhwxqi0001qt0k2fhql8xv_cmoksn9m101jenv0k5okmakjb-2026-04-30T011821.mp4" target="_blank">Live demo recording</a></li>
+        <li><a href="https://github.com/Advittt/TrueConsent" target="_blank">Source code — TrueConsent on GitHub</a></li>
+      </ul>
+
+      <p class="animate-on-scroll" style="margin-top: 2.5rem;">
+        <a href="blog.html" class="nav-link">&larr; Back to Blog</a>
+      </p>
+
+    </article>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <span>&copy; 2026 Advit Ahuja</span>
+      <div class="footer-links">
+        <a href="mailto:advitahuja1@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/advit-ahuja/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/Advittt" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+
+</body>
+</html>

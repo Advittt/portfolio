@@ -9,6 +9,8 @@
   --orange-light: #ff8533;
   --orange-dark: #cc5200;
   --orange-glow: rgba(255, 102, 0, 0.15);
+  --green: #00ff08;
+  --green-dark: #00cc06;
   --text-primary: #e0e0e0;
   --text-secondary: #888888;
   --text-muted: #555555;
@@ -825,6 +827,61 @@ body::after {
   background: rgba(255, 255, 255, 0.02);
   font-style: italic;
   color: var(--text-primary);
+}
+
+/* Blog stat grid */
+.blog-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.blog-stat {
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.blog-stat:hover {
+  border-color: rgba(255, 102, 0, 0.35);
+  transform: translateY(-3px);
+}
+
+/* Blog body links — orange, not browser blue */
+.blog-content a:not(.nav-link) {
+  color: var(--orange-light);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 102, 0, 0.3);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.blog-content a:not(.nav-link):hover {
+  color: var(--orange);
+  border-bottom-color: var(--orange);
+}
+
+.blog-stat .stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--orange);
+  margin-bottom: 0.5rem;
+}
+
+.blog-stat .stat-label {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 600px) {
+  .blog-stats {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ========================================
