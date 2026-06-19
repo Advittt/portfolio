@@ -204,10 +204,32 @@ function initTimeline() {
     card.addEventListener('click', function() {
       // Close others
       document.querySelectorAll('[data-expandable].expanded').forEach(function(other) {
-        if (other !== card) other.classList.remove('expanded');
+        if (other !== card) {
+          other.classList.remove('expanded');
+          other.classList.remove('fully-expanded');
+          var otherBtn = other.querySelector('.timeline-read-more');
+          if (otherBtn) otherBtn.textContent = 'Read more';
+        }
       });
+      var willExpand = !card.classList.contains('expanded');
       card.classList.toggle('expanded');
+      // Reset fully-expanded state and button text when collapsing
+      if (!willExpand) {
+        card.classList.remove('fully-expanded');
+        var btn = card.querySelector('.timeline-read-more');
+        if (btn) btn.textContent = 'Read more';
+      }
     });
+
+    // Read more / less toggle — don't propagate to card click
+    var readMoreBtn = card.querySelector('.timeline-read-more');
+    if (readMoreBtn) {
+      readMoreBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        card.classList.toggle('fully-expanded');
+        readMoreBtn.textContent = card.classList.contains('fully-expanded') ? 'Read less' : 'Read more';
+      });
+    }
   });
 }
 

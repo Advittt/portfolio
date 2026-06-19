@@ -625,6 +625,57 @@ body::after {
   margin-top: 1rem;
 }
 
+/* Special styling only for cards with a Read more button (e.g., ServiceMob) */
+.timeline-card.has-read-more.expanded .timeline-card-body {
+  position: relative;
+}
+
+.timeline-card.has-read-more.fully-expanded .timeline-card-body {
+  max-height: 3000px;
+}
+
+/* Fade gradient hint that there's more content below — only on has-read-more cards */
+.timeline-card.has-read-more.expanded .timeline-card-body::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(26, 26, 26, 0), var(--surface));
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.timeline-card.has-read-more.fully-expanded .timeline-card-body::after {
+  opacity: 0;
+}
+
+/* Read more / less button */
+.timeline-read-more {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--orange);
+  color: var(--orange);
+  padding: 0.45rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.timeline-read-more:hover {
+  background: var(--orange);
+  color: var(--surface);
+}
+
+.timeline-card.expanded .timeline-read-more {
+  display: inline-block;
+}
+
 .timeline-card-body ul {
   list-style: none;
   padding: 0;
