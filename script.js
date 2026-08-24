@@ -276,6 +276,35 @@ function initProjectModals() {
     el.addEventListener('click', closeModal);
   });
 
+  // Inline links that scroll to the projects section, then open a modal
+  document.querySelectorAll('[data-open-project]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var projectId = link.getAttribute('data-open-project');
+      var target = document.querySelector('#projects');
+      if (!target) {
+        openModal(projectId);
+        return;
+      }
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Open once the smooth scroll settles (scrollend where supported,
+      // timer fallback elsewhere) so the scroll lock doesn't freeze it mid-flight
+      var opened = false;
+      var open = function() {
+        if (opened) return;
+        opened = true;
+        window.removeEventListener('scrollend', open);
+        openModal(projectId);
+      };
+      if ('onscrollend' in window) {
+        window.addEventListener('scrollend', open, { once: true });
+        setTimeout(open, 1500);
+      } else {
+        setTimeout(open, 800);
+      }
+    });
+  });
+
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && modal.classList.contains('open')) {
       closeModal();
