@@ -243,13 +243,13 @@
       <div class="section-line"></div>
     </div>
     <div class="projects-grid">
-      <div class="project-card animate-on-scroll">
+      <div class="project-card animate-on-scroll" data-project="isis" tabindex="0" role="button" aria-haspopup="dialog">
         <div class="project-image">
           <img src="assets/Diss.jpg" alt="ML for Particle Accelerator">
         </div>
         <div class="project-info">
           <h3>ML for a Particle Accelerator</h3>
-          <p>Formulated and tuned five ML algorithms from scikit-learn to predict ion-source failures in a particle accelerator. Achieved 90% accuracy. Presented findings to UKRI and influenced further investment.</p>
+          <p>Tuned five ML algorithms to predict ion-source failures in the ISIS particle accelerator, catching half of all failures ~2 hours ahead of the fault. Presented findings to UKRI and influenced further investment.</p>
           <div class="project-tags">
             <span class="tech-tag">Python</span>
             <span class="tech-tag">scikit-learn</span>
@@ -257,7 +257,7 @@
           </div>
         </div>
       </div>
-      <div class="project-card animate-on-scroll">
+      <div class="project-card animate-on-scroll" data-project="dnn" tabindex="0" role="button" aria-haspopup="dialog">
         <div class="project-image">
           <img src="assets/cognitiveRobotics.jpg" alt="Cognitive Robotics">
         </div>
@@ -271,7 +271,7 @@
           </div>
         </div>
       </div>
-      <div class="project-card animate-on-scroll">
+      <div class="project-card animate-on-scroll" data-project="horizon" tabindex="0" role="button" aria-haspopup="dialog">
         <div class="project-image">
           <img src="assets/VC.jpg" alt="Visual Computing">
         </div>
@@ -285,7 +285,21 @@
           </div>
         </div>
       </div>
-      <div class="project-card animate-on-scroll">
+      <div class="project-card animate-on-scroll" data-project="face" tabindex="0" role="button" aria-haspopup="dialog">
+        <div class="project-image">
+          <img src="assets/face-completion.png" alt="ML Face Recognition and Completion">
+        </div>
+        <div class="project-info">
+          <h3>ML &mdash; Face Recognition &amp; Completion</h3>
+          <p>Implemented classical ML from scratch in NumPy: 40-way face recognition at 88.5% leave-one-out accuracy, and face completion &mdash; predicting the right half of a face from its left.</p>
+          <div class="project-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">NumPy</span>
+            <span class="tech-tag">From Scratch</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card animate-on-scroll" data-project="nlu" tabindex="0" role="button" aria-haspopup="dialog">
         <div class="project-image">
           <img src="assets/NLU.jpg" alt="NLU Evidence Detection">
         </div>
@@ -324,6 +338,111 @@
       </div>
     </div>
   </footer>
+
+  <!-- Project Detail Modal -->
+  <div class="project-modal" id="project-modal" aria-hidden="true">
+    <div class="project-modal-backdrop" data-modal-close></div>
+    <div class="project-modal-dialog" role="dialog" aria-modal="true" aria-label="Project details">
+      <button class="project-modal-close" data-modal-close aria-label="Close">&times;</button>
+      <div class="project-modal-body"></div>
+    </div>
+  </div>
+
+  <template id="project-detail-isis">
+    <h3 class="modal-title">ML for a Particle Accelerator</h3>
+    <p class="modal-subtitle">Predicting ion-source failures at the ISIS Neutron and Muon Source</p>
+    <div class="project-tags">
+      <span class="tech-tag">Python</span>
+      <span class="tech-tag">scikit-learn</span>
+      <span class="tech-tag">XGBoost</span>
+      <span class="tech-tag">Matplotlib</span>
+    </div>
+    <div class="modal-text">
+      <p>The ISIS Neutron and Muon Source is a world-leading scientific facility that uses particle accelerators to probe materials at the atomic level, powering breakthroughs from medicine to energy. Its subsystems must run continuously for weeks at a time, so unexpected failures mean costly downtime and interrupted science. My final-year dissertation at the University of Manchester &mdash; a joint research project with UKRI as industrial partner &mdash; asked whether ion-source failures could be predicted from the telemetry the facility already had, before they occur.</p>
+      <p>We reconciled irregular, unaligned sensor archives onto a common one-minute time base, joined the operations downtime log to build failure labels, and ran exploratory analysis &mdash; KDEs, correlation heat maps, hierarchical clustering and PCA &mdash; to cut a large channel set down to ~19 informative ones. Five models (Logistic Regression, Decision Trees, Random Forest, AdaBoost and XGBoost) were tuned under leakage-aware time-series cross-validation and swept across 26 label horizons; with ~26 failures in ~142,000 minutes of machine time, we scored on MCC rather than accuracy.</p>
+      <p>The best configuration caught half of all ion-source failures in a held-out month of operation, roughly two hours ahead of the fault, at just 0.17% false-alarm duty &mdash; with no new sensors or hardware changes. The findings were presented to UKRI and influenced their decision to invest further in the work.</p>
+    </div>
+    <h4 class="modal-video-heading">Watch the screencast</h4>
+    <video class="modal-video" controls preload="metadata" poster="assets/Diss.jpg">
+      <source src="assets/isis-screencast.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </template>
+
+  <template id="project-detail-dnn">
+    <h3 class="modal-title">DNN for Vision Recognition</h3>
+    <p class="modal-subtitle">Systematic CNN hyperparameter study on CIFAR-100</p>
+    <div class="project-tags">
+      <span class="tech-tag">TensorFlow</span>
+      <span class="tech-tag">Keras</span>
+      <span class="tech-tag">CNN</span>
+      <span class="tech-tag">Google Colab</span>
+    </div>
+    <div class="modal-text">
+      <p>CIFAR-100 is a hard target: 60,000 tiny 32&times;32 images spread across 100 classes. Starting from a course-provided baseline CNN, I ran four systematic one-variable-at-a-time hyperparameter sweeps &mdash; dropout rate, pooling size, kernel size and learning rate &mdash; on a Conv&rarr;BatchNorm&rarr;MaxPool architecture trained with Adam, 20 epochs per run.</p>
+      <p>The sweeps converged on pool (2,2), kernel (3,3), learning rate 0.001 and dropout 0.4, reaching 54.2% test accuracy &mdash; a 14% improvement over the baseline. Confusion-matrix analysis showed the model handles some classes far better than others, with visually similar classes (like car vs. van) driving most of the confusion.</p>
+    </div>
+    <h4 class="modal-video-heading">Confusion matrix &mdash; best configuration</h4>
+    <img class="modal-figure" src="assets/cnn-confusion-matrix.png" alt="Confusion matrix for the best CNN configuration">
+    <div class="modal-links">
+      <a class="modal-link" href="assets/docs/cnn-experiments.html" target="_blank">View the notebook (read-only) &rarr;</a>
+    </div>
+  </template>
+
+  <template id="project-detail-horizon">
+    <h3 class="modal-title">Visual Computing &mdash; Horizon Detection</h3>
+    <p class="modal-subtitle">Classical CV pipeline &mdash; no deep learning</p>
+    <div class="project-tags">
+      <span class="tech-tag">C++</span>
+      <span class="tech-tag">OpenCV</span>
+      <span class="tech-tag">Computer Vision</span>
+    </div>
+    <div class="modal-text">
+      <p>Built an end-to-end classical computer-vision pipeline in C++/OpenCV that detects the horizon line in an arbitrary image: grayscale conversion and thresholding, Canny edge detection, then probabilistic Hough line extraction filtered by angle (near-horizontal only) and segment length.</p>
+      <p>The surviving line segments feed a 2nd-degree polynomial fit written entirely from scratch &mdash; building the normal-equations matrix and solving it with hand-rolled Gaussian elimination and back-substitution, no library solver &mdash; which is then drawn as a translucent overlay on the original image. A full parameter study (Canny aperture, Hough resolution, line length and gap thresholds) picked settings that generalised across all test images rather than overfitting to one.</p>
+    </div>
+    <div class="modal-links">
+      <a class="modal-link" href="assets/docs/horizon-detection-report.pdf" target="_blank">Read the report (PDF) &rarr;</a>
+    </div>
+  </template>
+
+  <template id="project-detail-nlu">
+    <h3 class="modal-title">NLU &mdash; Evidence Detection</h3>
+    <p class="modal-subtitle">Traditional ML vs. deep learning on 23K claim&ndash;evidence pairs</p>
+    <div class="project-tags">
+      <span class="tech-tag">Python</span>
+      <span class="tech-tag">NLP</span>
+      <span class="tech-tag">Deep Learning</span>
+    </div>
+    <div class="modal-text">
+      <p>Given 23,000 labelled claim&ndash;evidence pairs, the task was to decide whether each piece of evidence supports its claim &mdash; comparing a traditional ML approach against a deep-learning one on a shared preprocessing pipeline (stop-word removal, lemmatisation, and narrowing each evidence passage to the sentence with the lowest Levenshtein distance to the claim).</p>
+      <p>A TF-IDF + Logistic Regression pipeline tuned with 5-fold GridSearchCV went head-to-head with a Keras CNN using an Attention layer. Both classified ~6,000 unseen pairs at 80&ndash;81% accuracy, beating the course baselines by 5&ndash;8% &mdash; and the 60&nbsp;KB logistic regression matched the 192&nbsp;MB deep model, which we called out in the poster as evidence the task didn't justify a heavier architecture. Joint project with Svetozar Miloshevski.</p>
+    </div>
+    <h4 class="modal-video-heading">The poster</h4>
+    <a href="assets/docs/nlu-poster.pdf" target="_blank"><img class="modal-figure" src="assets/NLU.jpg" alt="NLU evidence detection poster &mdash; click to open the PDF"></a>
+    <div class="modal-links">
+      <a class="modal-link" href="assets/docs/nlu-poster.pdf" target="_blank">Open the full poster (PDF) &rarr;</a>
+    </div>
+  </template>
+
+  <template id="project-detail-face">
+    <h3 class="modal-title">ML &mdash; Face Recognition &amp; Completion</h3>
+    <p class="modal-subtitle">Classical ML implemented from first principles in NumPy</p>
+    <div class="project-tags">
+      <span class="tech-tag">Python</span>
+      <span class="tech-tag">NumPy</span>
+      <span class="tech-tag">From Scratch</span>
+    </div>
+    <div class="modal-text">
+      <p>Working with a small face dataset (40 subjects, 5 images each), I implemented every model from scratch in NumPy &mdash; no library classifiers. L2-regularised least squares in closed form powered 40-way face recognition, with leave-one-out cross-validation selecting the regulariser for 88.5% accuracy.</p>
+      <p>The highlight is face completion: treating left half-faces as inputs and right halves as targets, the same regression model predicts the missing half of an unseen face &mdash; the image below shows real left halves joined to predicted right halves. I also trained the model with full-batch gradient descent, and derived the hinge-loss sub-gradient by hand to build an SVM-style classifier reaching 94.2% on a binary task &mdash; then showed least squares actually converges faster when classes are already linearly separable.</p>
+    </div>
+    <h4 class="modal-video-heading">Predicted right halves</h4>
+    <img class="modal-figure" src="assets/face-completion.png" alt="Faces with real left halves and model-predicted right halves">
+    <div class="modal-links">
+      <a class="modal-link" href="assets/docs/face-recognition-completion.html" target="_blank">View the notebook (read-only) &rarr;</a>
+    </div>
+  </template>
 
   <script src="script.js"></script>
 </body>

@@ -234,6 +234,56 @@ function initTimeline() {
 }
 
 /* ========================================
+   Project Detail Modal
+   ======================================== */
+function initProjectModals() {
+  var modal = document.getElementById('project-modal');
+  if (!modal) return;
+  var body = modal.querySelector('.project-modal-body');
+
+  function openModal(projectId) {
+    var template = document.getElementById('project-detail-' + projectId);
+    if (!template) return;
+    body.innerHTML = '';
+    body.appendChild(template.content.cloneNode(true));
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    modal.querySelector('.project-modal-close').focus();
+  }
+
+  function closeModal() {
+    var video = body.querySelector('video');
+    if (video) video.pause();
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+  }
+
+  document.querySelectorAll('.project-card[data-project]').forEach(function(card) {
+    card.addEventListener('click', function() {
+      openModal(card.getAttribute('data-project'));
+    });
+    card.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(card.getAttribute('data-project'));
+      }
+    });
+  });
+
+  modal.querySelectorAll('[data-modal-close]').forEach(function(el) {
+    el.addEventListener('click', closeModal);
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('open')) {
+      closeModal();
+    }
+  });
+}
+
+/* ========================================
    Mobile Nav Toggle
    ======================================== */
 function initMobileNav() {
@@ -312,6 +362,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Init modules
   initScrollAnimations();
   initTimeline();
+  initProjectModals();
   initMobileNav();
   initSmoothScroll();
 });
