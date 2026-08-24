@@ -241,13 +241,19 @@ function initProjectModals() {
   if (!modal) return;
   var body = modal.querySelector('.project-modal-body');
 
+  var savedScrollY = 0;
+
   function openModal(projectId) {
     var template = document.getElementById('project-detail-' + projectId);
     if (!template) return;
     body.innerHTML = '';
     body.appendChild(template.content.cloneNode(true));
+    body.scrollTop = 0;
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
+    // iOS-safe scroll lock: fix the body in place at the current scroll position
+    savedScrollY = window.scrollY;
+    document.body.style.top = -savedScrollY + 'px';
     document.body.classList.add('modal-open');
     modal.querySelector('.project-modal-close').focus();
   }
@@ -258,6 +264,8 @@ function initProjectModals() {
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
+    document.body.style.top = '';
+    window.scrollTo(0, savedScrollY);
   }
 
   document.querySelectorAll('.project-card[data-project]').forEach(function(card) {
