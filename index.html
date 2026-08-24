@@ -197,7 +197,7 @@
       <!-- ServiceMob -->
       <div class="timeline-item timeline-left animate-on-scroll">
         <div class="timeline-dot"></div>
-        <div class="timeline-card has-read-more" data-expandable>
+        <div class="timeline-card" data-expandable>
           <div class="timeline-card-header">
             <h3>ServiceMob</h3>
             <span class="timeline-role">Lead AI Software Engineer</span>
@@ -209,12 +209,10 @@
           </div>
           <div class="timeline-card-body">
             <ul>
-              <li><strong>Led 0-to-1 development</strong> of a multi-tenant B2B SaaS contact-center intelligence platform as primary architect and lead of a 2-engineer team. Took a static mock to a production application, delivered the MVP to enterprise clients <strong>2 weeks ahead of schedule</strong>, converted pilot engagements into retained paying clients, and scaled the platform from <strong>200 to 1,000+ users</strong>.</li>
-              <li><strong>Shipped "Mob AI," a production AI agent</strong> built on Anthropic Claude (Sonnet, Haiku, Opus) and AWS Bedrock via the Model Context Protocol (MCP). Built 2 custom MCP servers from scratch — one over ClickHouse for analytics queries, one over call-transcript retrieval — with closure-bound tenant isolation enforced server-side. Cut <strong>time-to-first-token from ~20 seconds to ~1 second (20x improvement)</strong> by re-architecting the agent loop off the Claude Agent SDK onto direct Anthropic Messages API calls. Handles ~1,000 agent turns/day across tenants with CloudWatch SLO monitoring, AWS spend alarms, and prompt caching tuned to 60%+ cache-read rate.</li>
-              <li><strong>Engineered a CI-gated LLM evaluation harness</strong> with 3 tenant fixtures and hybrid scoring (50% deterministic tool-use checks, 50% LLM-as-judge) that blocks deployments on &gt;10% regression from baseline. Used eval data to drive the team's production model-tier decision — demonstrated that Claude Sonnet and Haiku matched Opus's ~80% accuracy at 1/14th the cost (<strong>$1 vs $14 per 50-question run</strong>), a ~93% reduction in per-query inference spend.</li>
-              <li><strong>Architected a dynamic, typed SQL query-composition framework</strong> in TypeScript powering all analytics — 3 packages, 156 files, 67 internal consumers, 4,500 lines of test code. Includes a dialect-agnostic core, a ClickHouse implementation with 45+ strategy classes and 40+ tenant-aware template resolvers, and a node-based DSL with automatic dependency-graph traversal and CTE hoisting. One node registry drives <strong>62 metrics across 173 endpoints</strong>.</li>
-              <li><strong>Built a SvelteKit 2 / Svelte 5 frontend</strong> (51 pages, 250+ components, 5 role-based dashboards) and a Node.js / TypeScript backend (16 modules, 173 typed REST endpoints, contract-driven API layer) deployed on AWS via Infrastructure-as-Code (CDK): ECS Fargate, Application Load Balancer, Amplify, Cognito, RDS PostgreSQL, ClickHouse OLAP, CloudWatch. Implemented role-based access control (RBAC), cross-role impersonation, and per-tenant database isolation.</li>
-              <li><strong>Built an ensemble time-series forecasting engine</strong> over 5 contact channels (voice, chat, SMS, email, social) for contact volume, average handle time (AHT), and staffing requirements: 3 candidate models with MAPE / WAPE / sMAPE backtest validation, R²-weighted champion selection, prediction intervals, configurable 1-to-120-day horizons, and feature-engineered lead indicators. Shipped an LLM-powered coaching report generator (Anthropic Claude, schema-validated JSON output, peer-benchmark snapshots) and a CPRE / ATS / SLA analytics suite.</li>
+              <li><strong>Shipped "Mob AI," a production AI agent</strong> on Anthropic Claude and AWS Bedrock via the Model Context Protocol, with 2 custom MCP servers (ClickHouse analytics, call-transcript retrieval) and server-side tenant isolation. Re-architected the agent loop onto direct Anthropic API calls, cutting <strong>time-to-first-token from ~20s to ~1s</strong> across ~1,000 agent turns/day.</li>
+              <li><strong>Engineered a CI-gated LLM evaluation harness</strong> (hybrid deterministic + LLM-as-judge scoring) that blocks deploys on &gt;10% regression — its data drove the production model-tier decision, proving Sonnet and Haiku matched Opus's accuracy at 1/14th the cost and cutting inference spend by <strong>93%</strong>.</li>
+              <li><strong>Built a production RAG pipeline</strong> grounding AI coaching reports in cited, real resolved cases — <strong>199K+ vectors</strong> from 3 months of omnichannel transcripts via Vertex AI embeddings and Qdrant, tenant-scoped with PII redaction at ingest. Re-architected the Athena ingest from per-case to batched queries for an <strong>87&times; measured scan-cost reduction</strong>.</li>
+              <li><strong>Built the full stack on AWS</strong> via Infrastructure-as-Code: SvelteKit 2 / Svelte 5 frontend (250+ components, 5 role-based dashboards), Node.js / TypeScript backend with 173 typed REST endpoints, a typed SQL-composition framework powering <strong>62 analytics metrics</strong>, an ensemble time-series forecasting engine, RBAC, and per-tenant database isolation.</li>
             </ul>
             <div class="timeline-tags">
               <span class="tech-tag">AI Agents</span>
@@ -230,7 +228,6 @@
               <span class="tech-tag">Prisma</span>
             </div>
           </div>
-          <button class="timeline-read-more" type="button">Read more</button>
         </div>
       </div>
 

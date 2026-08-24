@@ -818,6 +818,11 @@ body::after {
   color: var(--orange);
 }
 
+.timeline-card-body strong {
+  color: var(--orange-light);
+  font-weight: 600;
+}
+
 .timeline-images {
   display: flex;
   gap: 0.75rem;
